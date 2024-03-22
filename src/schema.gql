@@ -1,0 +1,159 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""Language of response"""
+enum ELang {
+  english
+  russian
+}
+
+"""Categories of place"""
+enum EPlaceCategory {
+  accommodation
+  activity
+  catering
+  commercial
+  entertainment
+  healthcare
+  natural
+}
+
+"""Conditions for place"""
+enum EPlaceCondition {
+  dogs
+  internetAccess
+  noDogs
+  organic
+  vegan
+  wheelchair
+}
+
+type Query {
+  """Place queries"""
+  placeQueries: TPlacesQueries!
+}
+
+input TBoundingBox {
+  """Bottom right point"""
+  bottomRight: TPointInput!
+
+  """Top left point"""
+  topLeft: TPointInput!
+}
+
+type TContactsAttributes {
+  """Email"""
+  email: String
+
+  """Phone number"""
+  phone: String
+}
+
+type TListMetaAttributes {
+  """Current page"""
+  currentPage: Int!
+
+  """Elements per page"""
+  elementsPerPage: Int!
+}
+
+type TLocationAttributes {
+  """City of place"""
+  city: String
+
+  """Coordinates of Place"""
+  coordinates: TPointAttributes!
+
+  """Country of place"""
+  country: String
+
+  """Full address of place"""
+  fullAddress: String
+
+  """Region of place"""
+  region: String
+
+  """State of place"""
+  state: String
+
+  """Street of place"""
+  street: String
+}
+
+type TOperationMetaAttributes {
+  """Operation delta timestamp"""
+  deltaTimestamp: Float!
+
+  """Operation finish timestamp"""
+  finishTimestamp: Float!
+
+  """Operation start timestamp"""
+  startTimestamp: Float!
+}
+
+type TPlaceAttributes {
+  """Contacts of place"""
+  contacts: TContactsAttributes
+
+  """Id of place"""
+  id: String!
+
+  """Location of place"""
+  location: TLocationAttributes!
+
+  """Name of place"""
+  name: String!
+}
+
+type TPlaceListAttributes {
+  data: [TPlaceAttributes!]!
+  meta: TListMetaAttributes!
+
+  """Status metadata"""
+  operationMeta: TOperationMetaAttributes!
+}
+
+input TPlaceListInput {
+  """Search parameter by bounding box"""
+  boundingBox: TBoundingBox!
+
+  """Categories for places in or manner"""
+  categories: [EPlaceCategory!]
+
+  """Conditions for places in or manner"""
+  conditions: [EPlaceCondition!]
+
+  """Configuration for language"""
+  language: ELang
+
+  """Page of list"""
+  page: Int = 0
+
+  """Amount of elements per page"""
+  perPage: Int = 10
+
+  """SimpleFilter"""
+  simpleFilter: String
+}
+
+type TPlacesQueries {
+  """List of places"""
+  list(input: TPlaceListInput!): TPlaceListAttributes!
+}
+
+type TPointAttributes {
+  """Latitude"""
+  lat: Float!
+
+  """Longitude"""
+  lon: Float!
+}
+
+input TPointInput {
+  """Latitude"""
+  lat: Float!
+
+  """Longitude"""
+  lon: Float!
+}
