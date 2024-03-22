@@ -5,6 +5,8 @@ import { PlaceAttributes } from '@modules/place/attributes/place.attributes'
 import { PlaceListAttributes } from '@modules/place/attributes/place-list.attributes'
 import { UseInterceptors } from '@nestjs/common'
 import { OperationMetaInterceptor } from '@src/shared-modules/graphql/interceptor/operation-meta.interceptor'
+import { IdInput } from '@src/shared-modules/graphql/input/id.input'
+import { PlaceRecordInput } from '@modules/place/input/place-record.input'
 
 @ObjectType('TPlacesQueries')
 export class PlaceQueries {
@@ -26,4 +28,11 @@ export class PlaceQueriesResolver {
         return await this.placeService.list(input)
     }
 
+    @ResolveField(() => PlaceAttributes, {
+        description: 'Record of place',
+        name: 'record'
+    })
+    async record(@Args('input') input: PlaceRecordInput) {
+        return await this.placeService.record(input)
+    }
 }

@@ -8,16 +8,16 @@ import { ELang } from '@core/geoapify/enum/lang.enum'
 
 @InputType('TPlaceListInput')
 export class PlaceListInput extends ListPaginationSimpleFilterInput {
+    @IsOptional()
     @IsEnum(EPlaceCondition, {each: true})
     @IsArray()
-    @IsOptional()
     @Field(() => [EPlaceCondition], {
         description: 'Conditions for places in or manner',
         nullable: true
     })
-    @IsOptional()
     conditions: EPlaceCondition[]
 
+    @IsOptional()
     @IsEnum(EPlaceCategory, {each: true})
     @IsArray()
     @Field(() => [EPlaceCategory], {

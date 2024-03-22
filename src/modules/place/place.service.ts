@@ -9,6 +9,7 @@ import {
 } from '@modules/place/adapter/geoapify-place-properties-to-place-attributes.adapter'
 import { ListMetaAttributes } from '@src/shared-modules/graphql/attributes/list-meta.attributes'
 import { EPlaceCategory } from '@core/geoapify/places/enum/places-category.enum'
+import { PlaceRecordInput } from '@modules/place/input/place-record.input'
 
 @Injectable()
 export class PlaceService {
@@ -42,5 +43,14 @@ export class PlaceService {
                     .build(),
             )
             .build()
+    }
+
+    async record(input:PlaceRecordInput):Promise<PlaceAttributes> {
+        const response = await this.geoapifyPlacesService.geoapifyPlaceDetailFetch({
+            id: input.id,
+            lang: input.language
+        })
+
+        return geoapifyPlacePropertiesToPlaceAttributesAdapter(response.features[0].properties)
     }
 }

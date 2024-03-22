@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common'
 import { GeoapifyPlacesService } from '@core/geoapify/places/geoapify-places.service'
-import { HttpModule } from '@nestjs/axios'
 import { ConfigModule } from '@modules/config/config.module'
+import { GeoapifyFetchModule } from '@core/geoapify/api/geoapify-fetch.module'
 
 @Module({
     imports: [
-        HttpModule,
-        ConfigModule
+        ConfigModule,
+        GeoapifyFetchModule
     ],
     providers: [GeoapifyPlacesService],
     exports: [GeoapifyPlacesService]

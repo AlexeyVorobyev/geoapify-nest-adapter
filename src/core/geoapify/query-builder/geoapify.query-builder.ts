@@ -1,5 +1,6 @@
 import { EEndpoint } from '@core/geoapify/enum/endpoint.enum'
 import { EPlacesParam } from '@core/geoapify/places/enum/places-param.enum'
+import { EPlaceDetailParam } from '@core/geoapify/places/enum/place-detail-param.enum'
 
 export class GeoapifyQueryBuilder {
     constructor(
@@ -27,6 +28,11 @@ export class GeoapifyQueryBuilder {
         } else {
             this.setParam(key, values)
         }
+        return this
+    }
+
+    setPlaceDetailsParam(key: EPlaceDetailParam, values: string[]) {
+        this.setParam(key,values)
         return this
     }
 

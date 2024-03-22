@@ -8,6 +8,21 @@ type TFeatures = {
     properties: TGeoapifyPlaceProperties
 }
 
+type TContact = {
+    phone?: string,
+    email?: string
+}
+
+type TFacilities = {
+    internet_access?: boolean
+    wheelchair?: boolean
+    smoking?:boolean
+    toilets?:boolean
+    dogs?:boolean
+    takeaway?:boolean
+    delivery?:boolean
+}
+
 export type TGeoapifyPlaceProperties = {
     lat: number,
     lon: number,
@@ -18,11 +33,9 @@ export type TGeoapifyPlaceProperties = {
     city: string,
     street: string,
     address_line2: string
-    contact: TContact
+    contact?: TContact
     place_id: string
-}
-
-type TContact = {
-    phone: string,
-    email: string
+    website?: string
+    description?: string
+    facilities?: TFacilities
 }

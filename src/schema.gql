@@ -48,6 +48,32 @@ type TContactsAttributes {
 
   """Phone number"""
   phone: String
+
+  """Website"""
+  website: String
+}
+
+type TFacilitiesAttributes {
+  """Are delivery available"""
+  delivery: Boolean
+
+  """Is dogs permitted"""
+  dogs: Boolean
+
+  """Is internet available in this place"""
+  internetAccess: Boolean
+
+  """Is smoking permitted"""
+  smoking: Boolean
+
+  """Are takeaway available"""
+  takeaway: Boolean
+
+  """Are there toilets in this place"""
+  toilets: Boolean
+
+  """Is this place suitable for wheelchair"""
+  wheelchair: Boolean
 }
 
 type TListMetaAttributes {
@@ -94,7 +120,36 @@ type TOperationMetaAttributes {
 
 type TPlaceAttributes {
   """Contacts of place"""
-  contacts: TContactsAttributes
+  contacts: TContactsAttributes!
+
+  """Description of place"""
+  description: String
+
+  """Facilities of place"""
+  facilities: TFacilitiesAttributes!
+
+  """Id of place"""
+  id: String!
+
+  """Location of place"""
+  location: TLocationAttributes!
+
+  """Name of place"""
+  name: String!
+
+  """Status metadata"""
+  operationMeta: TOperationMetaAttributes!
+}
+
+type TPlaceAttributesOmitOperationMeta {
+  """Contacts of place"""
+  contacts: TContactsAttributes!
+
+  """Description of place"""
+  description: String
+
+  """Facilities of place"""
+  facilities: TFacilitiesAttributes!
 
   """Id of place"""
   id: String!
@@ -107,7 +162,7 @@ type TPlaceAttributes {
 }
 
 type TPlaceListAttributes {
-  data: [TPlaceAttributes!]!
+  data: [TPlaceAttributesOmitOperationMeta!]!
   meta: TListMetaAttributes!
 
   """Status metadata"""
@@ -137,9 +192,20 @@ input TPlaceListInput {
   simpleFilter: String
 }
 
+input TPlaceRecordInput {
+  """Id of place"""
+  id: String!
+
+  """Configuration for language"""
+  language: ELang
+}
+
 type TPlacesQueries {
   """List of places"""
   list(input: TPlaceListInput!): TPlaceListAttributes!
+
+  """Record of place"""
+  record(input: TPlaceRecordInput!): TPlaceAttributes!
 }
 
 type TPointAttributes {

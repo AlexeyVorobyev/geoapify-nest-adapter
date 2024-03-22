@@ -4,13 +4,19 @@ import { Field, ObjectType } from '@nestjs/graphql'
 export class ContactsAttributes {
     @Field(() => String, {
         description: 'Phone number',
-        nullable: true
+        nullable: true,
     })
     phone: string
 
     @Field(() => String, {
         description: 'Email',
-        nullable: true
+        nullable: true,
     })
-    email:string
+    email: string
+
+    @Field(() => String, {
+        description: 'Website',
+        nullable: true,
+    })
+    website: string
 }
