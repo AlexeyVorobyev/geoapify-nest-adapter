@@ -14,7 +14,7 @@ import { TGeoapifyPlaceDetailsFetchOutput } from '@core/geoapify/places/type/geo
 import {
     geoapifyPlaceDetailFetchInputToRecordAdapter,
 } from '@core/geoapify/places/adapter/geoapify-place-detail-fetch-input-to-record.adapter'
-import { GeoapifyFetchService } from '@core/geoapify/api/geoapify-fetch.service'
+import { GeoapifyFetchService } from '@core/geoapify/fetch/geoapify-fetch.service'
 import { EPlaceDetailParam } from '@core/geoapify/places/enum/place-detail-param.enum'
 
 @Injectable()
@@ -22,7 +22,7 @@ export class GeoapifyPlacesService {
     constructor(
         @Inject(geoapifyConfig.KEY)
         private geoapifyConfiguration: ConfigType<typeof geoapifyConfig>,
-        private geoapifyFetchService:GeoapifyFetchService
+        private geoapifyFetchService: GeoapifyFetchService,
     ) {
     }
 
@@ -46,7 +46,7 @@ export class GeoapifyPlacesService {
         return response.data
     }
 
-    async geoapifyPlaceDetailFetch(input:TGeoapifyPlaceDetailsFetchInput):Promise<TGeoapifyPlaceDetailsFetchOutput> {
+    async geoapifyPlaceDetailFetch(input: TGeoapifyPlaceDetailsFetchInput): Promise<TGeoapifyPlaceDetailsFetchOutput> {
         const adaptedValue = geoapifyPlaceDetailFetchInputToRecordAdapter(input)
 
         let geoapifyQueryBuilder = new GeoapifyQueryBuilder(
