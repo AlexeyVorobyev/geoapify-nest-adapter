@@ -2,6 +2,12 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+"""Distance unit"""
+enum EDistanceUnit {
+  meters
+  miles
+}
+
 """Language of response"""
 enum ELang {
   english
@@ -29,9 +35,36 @@ enum EPlaceCondition {
   wheelchair
 }
 
+"""Modes of routing, for example car or by feet"""
+enum ERoutingMode {
+  approximatedTransit
+  bicycle
+  bus
+  car
+  motorcycle
+  scooter
+  transit
+  walk
+}
+
+"""Traffic mode"""
+enum ERoutingTraffic {
+  approximated
+  freeFlow
+}
+
+"""Units f result"""
+enum ERoutingUnits {
+  imperial
+  metric
+}
+
 type Query {
   """Place queries"""
-  placeQueries: TPlacesQueries!
+  place: TPlacesQueries!
+
+  """Route queries"""
+  route: TRoutesQueries!
 }
 
 input TBoundingBox {
@@ -222,4 +255,106 @@ input TPointInput {
 
   """Longitude"""
   lon: Float!
+}
+
+type TRouteLegAttributes {
+  """Route leg metadata"""
+  meta: TRouteLegMetadataAttributes!
+
+  """Route leg steps"""
+  steps: [TRouteLegStepAttributes!]!
+}
+
+type TRouteLegMetadataAttributes {
+  """Distance in unit"""
+  distance: Float!
+
+  """Time in seconds"""
+  time: Float!
+}
+
+type TRouteLegStepAttributes {
+  """Coordinates of step line"""
+  coordinates: [TPointAttributes!]!
+
+  """Instruction"""
+  instruction: String
+
+  """Route step metadata"""
+  meta: TRouteLegStepMetadataAttributes!
+}
+
+type TRouteLegStepElevationAttributes {
+  """Average elevation"""
+  average: Float!
+
+  """Max elevation"""
+  max: Float!
+
+  """Min elevation"""
+  min: Float!
+}
+
+type TRouteLegStepMetadataAttributes {
+  """Distance in unit"""
+  distance: Float!
+
+  """Elevation data"""
+  elevation: TRouteLegStepElevationAttributes!
+
+  """Time in seconds"""
+  time: Float!
+}
+
+type TRouteMetadataAttributes {
+  """Countries under route"""
+  countries: [String!]!
+
+  """Distance in unit"""
+  distance: Float!
+
+  """Distance unit type"""
+  distanceUnit: EDistanceUnit!
+
+  """Mode of route"""
+  mode: ERoutingMode!
+
+  """Time in seconds"""
+  time: Float!
+
+  """Traffic mode"""
+  traffic: ERoutingTraffic!
+}
+
+type TRouteRoutingAttributes {
+  """Route legs"""
+  legs: [TRouteLegAttributes!]!
+
+  """Route metadata"""
+  meta: TRouteMetadataAttributes!
+
+  """Status metadata"""
+  operationMeta: TOperationMetaAttributes!
+}
+
+input TRouteRoutingInput {
+  """Configuration for language"""
+  language: ELang
+
+  """Configuration for mode of routing"""
+  mode: ERoutingMode
+
+  """Configuration for traffic mode"""
+  traffic: ERoutingTraffic
+
+  """Configuration for units"""
+  units: ERoutingUnits
+
+  """Configuration for mode of routing"""
+  waypoints: [TPointInput!]!
+}
+
+type TRoutesQueries {
+  """List of places"""
+  routing(input: TRouteRoutingInput!): TRouteRoutingAttributes!
 }

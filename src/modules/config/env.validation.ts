@@ -39,7 +39,7 @@ class EnvironmentVariables {
 
 	@IsString()
 	@IsNotEmpty()
-	GEOAPIFY_PLACES_API_KEY: string
+	GEOAPIFY_API_KEY: string
 }
 
 export function validate(config: Record<string, unknown>) {

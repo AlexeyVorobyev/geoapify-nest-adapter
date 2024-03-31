@@ -5,6 +5,7 @@ import { DatabaseModule } from '@src/shared-modules/database/database.module'
 import { JwtOauth2Module } from '@src/shared-modules/jwt-oauth2/jwt-oauth2.module'
 import { ConfigModule } from '@modules/config/config.module'
 import { PlaceModule } from '@modules/place/place.module'
+import {RouteModule} from '@modules/route/route.module'
 
 @Module({
     imports: [
@@ -12,7 +13,8 @@ import { PlaceModule } from '@modules/place/place.module'
         DatabaseModule,
         JwtOauth2Module,
         GraphqlModule,
-        PlaceModule
+        PlaceModule,
+        RouteModule
     ],
     providers: [
         RootResolver,

@@ -1,6 +1,6 @@
 import { Field, InputType } from '@nestjs/graphql'
 import { IsNotEmpty, ValidateNested } from 'class-validator'
-import { PointInput } from '@modules/place/input/point.input'
+import { PointInput } from '@modules/common/input/point.input'
 
 @InputType('TBoundingBox')
 export class BoundingBoxInput {

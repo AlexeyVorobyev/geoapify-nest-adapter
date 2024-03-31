@@ -1,12 +1,15 @@
 import { Module } from '@nestjs/common'
 import { GeoapifyPlacesModule } from '@core/geoapify/places/geoapify-places.module'
+import {GeoapifyRoutesModule} from '@core/geoapify/routes/geoapify-routes.module'
 
 @Module({
     imports: [
-        GeoapifyPlacesModule
+        GeoapifyPlacesModule,
+        GeoapifyRoutesModule
     ],
     exports: [
-        GeoapifyPlacesModule
+        GeoapifyPlacesModule,
+        GeoapifyRoutesModule
     ]
 })
 export class GeoapifyModule {
