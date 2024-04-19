@@ -1,16 +1,18 @@
-import { Module } from '@nestjs/common'
-import { GeoapifyModule } from '@core/geoapify/geoapify.module'
-import { PlaceService } from '@modules/place/place.service'
-import { PlaceQueriesResolver } from '@modules/place/resolver/place-queries.resolver'
+import {Module} from '@nestjs/common'
+import {GeoapifyModule} from '@core/geoapify/geoapify.module'
 import {RouteService} from '@modules/route/route.service'
 import {RouteQueriesResolver} from '@modules/route/resolver/route-queries.resolver'
+import {JwtOauth2Module} from '@src/shared-modules/jwt-oauth2/jwt-oauth2.module'
 
 @Module({
-    imports: [GeoapifyModule],
-    providers: [
-        RouteService,
-        RouteQueriesResolver
-    ]
+  imports: [
+    GeoapifyModule,
+    JwtOauth2Module,
+  ],
+  providers: [
+    RouteService,
+    RouteQueriesResolver,
+  ],
 })
 export class RouteModule {
 }

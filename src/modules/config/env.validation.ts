@@ -12,10 +12,6 @@ class EnvironmentVariables {
 
 	@IsString()
 	@IsNotEmpty()
-	JWT_ACCESS_TOKEN_SECRET: string
-
-	@IsString()
-	@IsNotEmpty()
 	SWAGGER_SITE_TITLE: string
 
 	@IsString()
