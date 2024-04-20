@@ -34,6 +34,7 @@ export class PlaceService {
         return Builder<PlaceListAttributes>()
             .data(
                 response.features
+                    .filter((item) => item.properties.name)
                     .map((item) => geoapifyPlacePropertiesToPlaceAttributesAdapter(item.properties)),
             )
             .meta(
